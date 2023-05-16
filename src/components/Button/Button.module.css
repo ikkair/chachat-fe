@@ -1,0 +1,21 @@
+.button {
+    background-color:#b194aa;
+    color:white;
+    transition: 0.2s;
+    padding: 6px 12px;
+}
+
+.button:hover {
+    background-color: hsl(281, 37%, 38%);
+}
+
+.button:active {
+    background-color: hsl(281, 34%, 37%);
+}
+
+.buttonInverse {
+    background-color: white;
+    color: 	#b194aa;
+    transition: 0.2s;
+    padding: 6px 12px;
+}
