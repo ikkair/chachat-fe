@@ -92,40 +92,24 @@ npm build
 
 # Screenshots
 
-<!-- <table>
+<table>
   <tr>
-    <td><img width="350px" src="./docs/readme/login.png" border="0" alt="Login" /></td>
-    <td><img width="350px" src="./docs/readme/register.png" border="0"  alt="Register" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Login.png" border="0" alt="Login" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Register.png" border="0"  alt="Register" /></td>
   </tr>
    <tr>
     <td>Login</td>
     <td>Register</td>
   </tr>
   <tr>
-    <td><img width="350px" src="./docs/readme/email-activation.png" border="0" alt="Email Activation" /></td>
-    <td><img width="350px" src="./docs/readme/forgot-password.png" border="0"  alt="Forgot Password" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Home.png" border="0" alt="Home" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Profile.png" border="0"  alt="Profile" /></td>
   </tr>
    <tr>
-    <td>Email Activation</td>
-    <td>Forgot Password</td>
+    <td>Home</td>
+    <td>Profile</td>
   </tr>
-   <tr>
-    <td><img width="350px" src="./docs/readme/home-page.png" border="0" alt="Home Page" /></td>
-    <td><img width="350px" src="./docs/readme/menu.png" border="0" alt="Menu" /> </td>
-  </tr>
-   <tr>
-    <td>Home Page</td>
-    <td>Menu</td>
-  </tr>
-    <tr>
-    <td><img width="350px" src="./docs/readme/private-message.png" border="0" alt="Private Message" /></td>
-    <td><img width="350px" src="./docs/readme/edit-profile.png" border="0" alt="Edit Profile" /> </td>
-  </tr>
-   <tr>
-    <td>Private Message</td>
-    <td>Edit Profile</td>
-  </tr>
-</table> -->
+</table>
 
 # Related Project
 

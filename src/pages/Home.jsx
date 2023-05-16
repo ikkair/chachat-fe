@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Person1 from '../assets/Person1.png'
+import Person2 from '../assets/Person2.png'
+import Person3 from '../assets/Person3.jpg'
 import Menu from '../assets/Menu.svg'
 import PrivateChat from '../components/PrivateChat'
 import BubbleChat from '../components/BubbleChat/BubbleChat'
@@ -212,7 +214,7 @@ const Home = () => {
                 </div>
                 {conversations.length !== 0 ? conversations.map((element, index)=>{
                   return(
-                  <PrivateChat key={index} handleClick={(event)=>{console.log(event.target.id)}} id={element.id} name={`${element.friend.name}`} time='22:00' notif="3" chat="hello baaang" image={element.friend.photo} />
+                  <PrivateChat key={index} handleClick={(event)=>{console.log(event.target.id)}} id={element.id} name={`${element.friend.name}`} time='13:23' notif="1" chat="Siap kaa" image={element.friend.photo} />
                   )
                 }): <></>}
               </div>
@@ -247,11 +249,13 @@ const Home = () => {
                 {listMessage ?
                   listMessage.map((element, index) => {
                     let isSelf = false
+                    let photo = Person3
                     if (element.sender_id == id) {
                       isSelf = true
+                      photo = Person2
                     }
                     return (
-                      <BubbleChat key={index} self={isSelf} image={Person1} chat={`${element.message}`} />
+                      <BubbleChat key={index} self={isSelf} image={photo} chat={`${element.message}`} />
                     )
                   })
                   :
