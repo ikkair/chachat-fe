@@ -95,11 +95,19 @@ npm build
 <table>
   <tr>
     <td><img width="350px" src="./public/docs/Chachat Login.png" border="0" alt="Login" /></td>
-    <td><img width="350px" src="./public/docs/Chachat Register.png" border="0"  alt="Register" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Login Success.png" border="0"  alt="Login Success" /></td>
   </tr>
    <tr>
     <td>Login</td>
+    <td>Login Success</td>
+  </tr>
+  <tr>
+    <td><img width="350px" src="./public/docs/Chachat Register.png" border="0" alt="Register" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Login Success.png" border="0"  alt="Register Success" /></td>
+  </tr>
+   <tr>
     <td>Register</td>
+    <td>Register Success</td>
   </tr>
   <tr>
     <td><img width="350px" src="./public/docs/Chachat Home.png" border="0" alt="Home" /></td>
