@@ -120,7 +120,7 @@ const Home = () => {
     setId(tempId)
     setToken(localStorage.getItem("token"))
     setRoomId("d59a831c-19ad-4cdb-a3cd-028e703a4708")
-    const tempSocket = io("http://localhost:4000", {query: `id=${tempId}`})
+    const tempSocket = io(`${process.env.REACT_APP_BACKEND}`, {query: `id=${tempId}`})
     setSocket(tempSocket)
     tempSocket.on("receiveMessage", (data) => {
       setListMessage(listMessage => [
