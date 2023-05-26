@@ -101,7 +101,7 @@ npm build
   </tr>
   <tr>
     <td><img width="350px" src="./public/docs/Chachat Register.png" border="0" alt="Register" /></td>
-    <td><img width="350px" src="./public/docs/Chachat Login Success.png" border="0"  alt="Register Success" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Register Success.png" border="0"  alt="Register Success" /></td>
   </tr>
    <tr>
     <td>Register</td>
