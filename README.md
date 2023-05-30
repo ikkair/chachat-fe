@@ -115,6 +115,14 @@ npm build
     <td>Home</td>
     <td>Profile</td>
   </tr>
+  <tr>
+    <td><img width="350px" src="./public/docs/Chachat Delete Message.png" border="0" alt="Delete Message" /></td>
+    <td><img width="350px" src="./public/docs/Chachat Delete Message Success.png" border="0"  alt="Delete Message Success" /></td>
+  </tr>
+   <tr>
+    <td>Delete Message</td>
+    <td>Delete Message Success</td>
+  </tr>
 </table>
 
 # Related Project

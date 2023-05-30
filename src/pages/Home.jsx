@@ -13,6 +13,7 @@ import { io } from 'socket.io-client'
 
 const Home = () => {
   const navigate = useNavigate()
+  const [deleteMesId, setDeleteMesId] = useState("")
   const [socket, setSocket] = useState()
   const [profile, setProfile] = useState(false)
   const [id, setId] = useState("")
@@ -30,6 +31,32 @@ const Home = () => {
       phone: ""
     }
   )
+  const handleDeleteMes = () => {
+    console.log(deleteMesId)
+    axios.delete(`${process.env.REACT_APP_BACKEND}/messages/${deleteMesId}`,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then((res) => {
+        Swal.fire({
+          title: `Delete Success`,
+          text: `${res.data.message}`,
+          icon: 'success',
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: `Delete Failed`,
+          text: `${err.response.data.message}`,
+          icon: 'error',
+        });
+      })
+    setDeleteMesId("")
+  }
+  const handleDeleteMesCancel = () => {
+    setDeleteMesId("")
+  }
   const handleMessageChange = (event) => {
     setMessage(event.target.value)
   }
@@ -100,27 +127,27 @@ const Home = () => {
   useEffect(() => {
     const tempId = localStorage.getItem("id")
     axios.get(`${process.env.REACT_APP_BACKEND}/conversations/personal/${tempId}`)
-      .then((res)=>{
+      .then((res) => {
         const data = res.data.data
         setConversations(data)
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err)
       })
     axios.get(`${process.env.REACT_APP_BACKEND}/messages/d59a831c-19ad-4cdb-a3cd-028e703a4708`)
-      .then((res)=>{
+      .then((res) => {
         console.log(res.data.data)
         const data = res.data.data
         setListMessage(data)
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err)
       })
-    if(!tempId){navigate("/login")}
+    if (!tempId) { navigate("/login") }
     setId(tempId)
     setToken(localStorage.getItem("token"))
     setRoomId("d59a831c-19ad-4cdb-a3cd-028e703a4708")
-    const tempSocket = io(`${process.env.REACT_APP_BACKEND_SOCKET}`, {query: `id=${tempId}`})
+    const tempSocket = io(`${process.env.REACT_APP_BACKEND_SOCKET}`, { query: `id=${tempId}` })
     setSocket(tempSocket)
     tempSocket.on("receiveMessage", (data) => {
       setListMessage(listMessage => [
@@ -212,26 +239,26 @@ const Home = () => {
                     placeholder="Search name"
                   />
                 </div>
-                {conversations.length !== 0 ? conversations.map((element, index)=>{
-                  return(
-                  <PrivateChat key={index} handleClick={(event)=>{console.log(event.target.id)}} id={element.id} name={`${element.friend.name}`} time='13:23' notif="1" chat="Siap kaa" image={element.friend.photo} />
+                {conversations.length !== 0 ? conversations.map((element, index) => {
+                  return (
+                    <PrivateChat key={index} handleClick={(event) => { console.log(event.target.id) }} id={element.id} name={`${element.friend.name}`} time='13:23' notif="1" chat="Siap kaa" image={element.friend.photo} />
                   )
-                }): <></>}
+                }) : <></>}
               </div>
             }
           </div>
           <div className='col vh-100 d-xl-flex flex-column d-none p-0'>
             <div className='w-100 border-0 d-flex justify-content-between p-2' style={{ backgroundColor: "#b194aa" }}>
               <div className='d-flex gap-2 align-items-center'>
-                {conversations.length !== 0 ? conversations[0].friend.photo !== "photo.jpg"? 
-                <img className='rounded-circle' src={conversations[0].friend.photo} alt="" width={70} />
-                :
-                <img className='rounded-circle' src={Person1} alt="" width={70} />:<></>
+                {conversations.length !== 0 ? conversations[0].friend.photo !== "photo.jpg" ?
+                  <img className='rounded-circle' src={conversations[0].friend.photo} alt="" width={70} />
+                  :
+                  <img className='rounded-circle' src={Person1} alt="" width={70} /> : <></>
                 }
                 <div className='d-flex flex-column align-items-start'>
                   <span className='fs-4' style={{ color: "#fcf8e3" }}>
                     <b>
-                      {conversations.length !== 0? conversations[0].friend.name: <></>}
+                      {conversations.length !== 0 ? conversations[0].friend.name : <></>}
                     </b>
                   </span>
                   <span className='text-secondary' style={{ fontSize: "14px" }}>Online</span>
@@ -250,17 +277,38 @@ const Home = () => {
                   listMessage.map((element, index) => {
                     let isSelf = false
                     let photo = Person3
+                    let messageId = ""
+                    if (element.id){
+                      messageId = element.id
+                    }
+                    if (element.messageId){
+                      messageId = element.messageId
+                    }
                     if (element.sender_id == id) {
                       isSelf = true
                       photo = Person2
                     }
                     return (
-                      <BubbleChat key={index} self={isSelf} image={photo} chat={`${element.message}`} />
+                      <BubbleChat key={index} deleteId={setDeleteMesId} messageId={messageId} self={isSelf} image={photo} chat={`${element.message}`} />
                     )
                   })
                   :
                   <></>
                 }
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Pesan</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body d-flex justify-content-center gap-3">
+                        <button type="button" onClick={handleDeleteMesCancel} class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" onClick={handleDeleteMes} class="btn btn-danger" data-bs-dismiss="modal">Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className='d-flex gap-2 p-2'>
